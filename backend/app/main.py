@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from google.auth import credentials
 from google.oauth2 import service_account
 import google.cloud.aiplatform as aiplatform
-from vertexai.preview.language_models import ChatModel, InputOutputTextPair
+from vertexai.preview.language_models import TextGenerationModel, ChatModel, InputOutputTextPair
 from fastapi.openapi.docs import get_swagger_ui_html, get_redoc_html
 import vertexai
 import json  # add this line
@@ -76,18 +76,16 @@ async def handle_chat(human_msg: str):
     Endpoint to handle chat.
     Receives a message from the user, processes it, and returns a response from the model.
     """
-    print("work")
-    chat_model = ChatModel.from_pretrained("chat-bison@001")
     parameters = {
         "temperature": 0.8,
         "max_output_tokens": 1024,
         "top_p": 0.8,
         "top_k": 40,
     }
-    chat = chat_model.start_chat(  # Initialize the chat with model
-        # chat context and examples go here
+    text_model = TextGenerationModel.from_pretrained("text-bison@001")
+    response = text_model.predict(
+        human_msg,
+        **parameters
     )
-    # Send the human message to the model and get a response
-    response = chat.send_message(human_msg, **parameters)
     # Return the model's response
     return {"response": response.text}
