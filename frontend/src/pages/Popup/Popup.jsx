@@ -5,7 +5,6 @@ import './Popup.css';
 
 const Popup = () => {
   const testAPI = () => {
-    console.log('test');
     const url = 'http://localhost:8080/chat'; // Replace with the actual server URL if needed
     const human_msg = 'Hello, how are you?';
 
@@ -35,16 +34,21 @@ const Popup = () => {
   const [selectedText, setSelectedText] = useState('No text selected');
 
   useEffect(() => {
-    function handleSelectedText(request, sender, sendResponse) {
-      if (request.selectedText) {
-        setSelectedText(request.selectedText);
-      }
-    }
+    const handleMessage = (request) => {
+      setSelectedText(request.selectedText);
+      alert(request.selectedText);
+    };
 
-    chrome.runtime.onMessage.addListener(handleSelectedText);
+    chrome.runtime.onMessage.addListener(handleMessage);
+
+    // // Get the absolute URL of the bundled content script file
+    // const contentScriptURL = chrome.extension.getURL('contentScript.bundle.js');
+
+    // // Inject the bundled content script into the active tab using the absolute URL
+    // chrome.tabs.executeScript({ file: contentScriptURL });
 
     return () => {
-      chrome.runtime.onMessage.removeListener(handleSelectedText);
+      chrome.runtime.onMessage.removeListener(handleMessage);
     };
   }, []);
 
