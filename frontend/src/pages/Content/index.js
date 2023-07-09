@@ -17,7 +17,8 @@ document.addEventListener('mouseup', (e) => {
   let box = document.getElementById(boxId);
 
   if (selectedText) {
-    const { clientX, clientY } = e;
+    const { clientX, clientY, pageY } = e;
+    const adjustedClientY = clientY + pageY - window.pageYOffset;
 
     if (!box) {
       box = document.createElement('div');
@@ -36,11 +37,28 @@ document.addEventListener('mouseup', (e) => {
         </div>
         <div class="w-64 left-[16px] top-[69px] absolute text-black text-xs font-normal">Q: Isn't it more beneficial to prioritize creating a supportive environment for young people with anxiety, rather than emphasizing the need for them to constantly challenge themselves and be brave?</div>
       `;
+
       document.body.appendChild(box);
+      // const selection = window.getSelection();
+
+      // const range = selection.getRangeAt(0);
+      // const firstNode = range.startContainer;
+      // const parentNode = firstNode.parentNode;
+
+      // parentNode.insertBefore(box, firstNode);
     }
 
+    console.log({
+      clientY,
+      pageY,
+      offset: window.pageYOffset,
+      adjustedClientY,
+    });
+
+    box.style.position = 'fixed';
     box.style.left = `${clientX}px`;
     box.style.top = `${clientY - 30}px`;
+
     box.style.display = 'block';
   } else if (box) {
     box.style.display = 'none';
