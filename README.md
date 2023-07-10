@@ -1,7 +1,7 @@
-# Demo Video
+# Introduction
 
-Motivation and walkthrough of CON:
-https://www.youtube.com/watch?v=KAqrvcHo2Bw&t=1s
+CON is a Google Chrome extension that challenges opinions in inline news articles with the intent of promoting critical thinking and reducing ideological echo chambers. CON was developed in a span of 3 days for the Lab Lab Ai Google Vertex hackathon. Our submission entry can be viewed here: 
+https://lablab.ai/event/google-vertex-ai-hackathon/leapmind/complementary-opposing-views-con   
 
 # Frontend
 
