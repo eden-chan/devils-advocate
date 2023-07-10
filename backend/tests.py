@@ -4,7 +4,7 @@ from openai.error import InvalidRequestError
 from fastapi import Depends, BackgroundTasks, status
 from fastapi.responses import JSONResponse
 
-openai.api_key = "sk-9zvTslc6JjVtr9gURn5IDgEcqRThMEWbZFUZ2kh4"
+openai.api_key = ""
 
 
 # response = openai.Answer.create(

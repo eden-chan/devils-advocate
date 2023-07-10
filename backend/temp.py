@@ -3,7 +3,7 @@ import openai
 from flask import Flask
 from flask_cors import CORS
 
-openai.api_key = "sk-9zvTslc6JjVtr9gURn5IDgEcqRThMEWbZFUZ2kh4"
+openai.api_key = ""
 
 
 def alice_function(request):
