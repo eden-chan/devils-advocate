@@ -1,3 +1,8 @@
+# Demo Video
+
+Motivation and walkthrough of CON:
+https://www.youtube.com/watch?v=KAqrvcHo2Bw&t=1s
+
 # Frontend
 
 ## Run the extension locally
