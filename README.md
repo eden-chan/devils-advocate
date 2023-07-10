@@ -1,8 +1,5 @@
-
-<img width="1288" alt="image" src="https://github.com/onlychans1/devils-advocate/assets/60107091/9d088d19-958c-446d-b530-817658ade85f">
-
-CON is a Google Chrome extension that challenges opinions in inline news articles with the intent of promoting critical thinking and reducing ideological echo chambers. CON was developed in a span of 3 days for the Lab Lab Ai Google Vertex hackathon. Our submission entry can be viewed here: 
-https://lablab.ai/event/google-vertex-ai-hackathon/leapmind/complementary-opposing-views-con   
+CON is a Google Chrome extension that challenges opinions in inline news articles with the intent of promoting critical thinking and reducing ideological echo chambers. CON was developed in a span of 3 days for the Lab Lab Ai Google Vertex hackathon. Our submission entry can be [viewed here](https://lablab.ai/event/google-vertex-ai-hackathon/leapmind/complementary-opposing-views-con) 
+  
 
 # Introduction
 Con plays devil's advocate to complement your understanding of the world as we read the news by challenging you to thoughtfully engage with opposing views. Con wishes for a more informed and less polarized society, one chrome extension download at a time.
