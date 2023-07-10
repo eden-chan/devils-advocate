@@ -76,6 +76,9 @@ async def handle_chat(human_msg: str):
     Endpoint to handle chat.
     Receives a message from the user, processes it, and returns a response from the model.
     """
+    
+    
+    
     parameters = {
         "temperature": 0.8,
         "max_output_tokens": 1024,
@@ -83,8 +86,16 @@ async def handle_chat(human_msg: str):
         "top_k": 40,
     }
     text_model = TextGenerationModel.from_pretrained("text-bison@001")
+    
+    
+    argument_statement = text_model.predict(
+        "Rephrase this text by breaking it down to up to 3 points outlining its core argument. Only return the arguments:" + human_msg,
+        **parameters
+    )
+    
+    
     response = text_model.predict(
-        human_msg,
+        "Generate a question that challenges this statement. Only return the question:" + argument_statement.text,
         **parameters
     )
     # Return the model's response
