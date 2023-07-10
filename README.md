@@ -16,6 +16,13 @@ CON aims for a more informed and less polarized society, one chrome extension do
 Down the road, CON hopes to become more than just an isolated chrome extension and expand internationally. By leveraging Google Vertex AI and Firebase for production-grade deployment to scale the solution to many more users and support multiple languages, reducing international conflict. 
 Furthemore, CON is optimistic in using blockchain technologies  to incentivize communities for truth-seeking and become a platform for Socratic discourse.
 
+<h2 align="center">Complementary Devil's Advocacy Demo</h2>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=KAqrvcHo2Bw">
+    <img src="https://img.youtube.com/vi/KAqrvcHo2Bw/0.jpg" alt="Video Thumbnail">
+  </a>
+</p>
+
 ## Tech Stack + Future Considerations
 Con's frontend is React, Typescript, Chakra UI, and backend is FastAPI and GCP. Con uses langchain and Google Vertex AI for ML models for sentiment analysis of articles and text generation and conversational assistance. 
 CON hopes to expand the platform to offer data analysis and visualization to help users engage with a broad spectrum of opinions and determine the credibility and believability of different news.
