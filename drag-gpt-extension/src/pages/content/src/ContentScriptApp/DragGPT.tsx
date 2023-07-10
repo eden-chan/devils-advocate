@@ -20,7 +20,7 @@ import { t } from "@src/chrome/i18n";
 
 const Container = styled.div`
   * {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "Garamond", serif;
   }
 `;
 
@@ -28,12 +28,12 @@ const skipLoopCycleOnce = async () => await delayPromise(1);
 
 async function getGPTResponseAsStream({
   input,
-  onFinish,
   onDelta,
+  onFinish,
 }: {
   input: string;
+  onDelta: (chunk: string) => unknown;
   onFinish: (result: string) => unknown;
-  onDelta: (result: string) => unknown;
 }) {
   return new Promise<{ firstChunk: string }>((resolve, reject) => {
     sendMessageToBackground({
@@ -42,11 +42,11 @@ async function getGPTResponseAsStream({
         input,
       },
       handleSuccess: (response) => {
-        if (response.isDone || !response.result) {
+        if (response.isDone || !response.chunk) {
           return onFinish(response.result);
         }
-        resolve({ firstChunk: response.result });
-        onDelta(response.result);
+        resolve({ firstChunk: response.chunk });
+        onDelta(response.chunk);
       },
       handleError: reject,
     });

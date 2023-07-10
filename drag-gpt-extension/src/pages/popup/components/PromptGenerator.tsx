@@ -12,7 +12,7 @@ type PromptGeneratorProps = {
 
 const getGeneratedPromptFromBackground = async (inputText: string) => {
   const data = await sendMessageToBackgroundAsync({
-    type: "RequestGenerateChatGPTPrompt",
+    type: "RequestGeneratePaLMPrompt",
     input: inputText,
   });
   return data.result;

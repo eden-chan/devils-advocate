@@ -1,4 +1,4 @@
-name: Code Review with ChatGPT
+name: Code Review with PaLM
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ jobs:
   add-auto-review-comment:
     if: contains(github.event.pull_request.labels.*.name, 'review')
     runs-on: ubuntu-latest
-    name: Code Review with ChatGPT
+    name: Code Review with PaLM
     steps:
       - uses: Jonghakseo/gpt-pr-github-actions@v1
         with:

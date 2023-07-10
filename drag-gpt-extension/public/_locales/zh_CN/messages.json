@@ -3,7 +3,7 @@
     "message": "Drag GPT - 便捷启动AI的Drag！"
   },
   "extensionDescription": {
-    "message": "您可以通过拖动并单击按钮，轻松地向ChatGPT询问或请求所选内容。"
+    "message": "您可以通过拖动并单击按钮，轻松地向PaLM询问或请求所选内容。"
   },
   "dragGPT": {
     "message": "Drag GPT"
@@ -87,7 +87,7 @@
     "message": "例如：代码审查"
   },
   "slotDetail_writePromptTitle": {
-    "message": "为ChatGPT编写提示文本（最多2000个字符）"
+    "message": "为PaLM编写提示文本（最多2000个字符）"
   },
   "slotDetail_promptInputPlaceholder": {
     "message": "例如：你是一个代码审核者。"

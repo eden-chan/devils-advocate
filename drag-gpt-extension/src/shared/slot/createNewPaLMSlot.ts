@@ -1,6 +1,6 @@
-export function createNewChatGPTSlot(config?: Partial<Slot>): Slot {
+export function createNewPaLMSlot(config?: Partial<Slot>): Slot {
   return {
-    type: "ChatGPT",
+    type: "PaLM",
     isSelected: false,
     id: generateId(),
     name: "",

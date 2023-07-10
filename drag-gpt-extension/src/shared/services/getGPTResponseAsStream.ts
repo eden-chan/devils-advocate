@@ -14,15 +14,15 @@ export async function getQuickGPTResponseAsStream({
     (resolve, reject) => {
       const { disconnect } = sendMessageToBackground({
         message: {
-          type: "RequestQuickChatGPTStream",
+          type: "RequestQuickPaLMStream",
           input: messages,
         },
         handleSuccess: (response) => {
-          if (response.isDone) {
+          if (response.isDone || !response.chunk) {
             return onFinish(response.result);
           }
-          resolve({ cancel: disconnect, firstChunk: response.result });
-          onDelta(response.result);
+          resolve({ cancel: disconnect, firstChunk: response.chunk });
+          onDelta(response.chunk);
         },
         handleError: reject,
       });
@@ -47,11 +47,11 @@ export async function getDragGPTResponseAsStream({
           input: messages,
         },
         handleSuccess: (response) => {
-          if (response.isDone) {
+          if (response.isDone || !response.chunk) {
             return onFinish(response.result);
           }
-          resolve({ cancel: disconnect, firstChunk: response.result });
-          onDelta(response.result);
+          resolve({ cancel: disconnect, firstChunk: response.chunk });
+          onDelta(response.chunk);
         },
         handleError: reject,
       });

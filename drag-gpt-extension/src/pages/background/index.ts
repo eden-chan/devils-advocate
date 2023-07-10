@@ -2,7 +2,7 @@ import "regenerator-runtime/runtime.js";
 import reloadOnUpdate from "virtual:reload-on-update-in-background-script";
 import { SlotStorage } from "@pages/background/lib/storage/slotStorage";
 import { ApiKeyStorage } from "@pages/background/lib/storage/apiKeyStorage";
-import { chatGPT } from "@pages/background/lib/infra/chatGPT";
+import { PaLM } from "@pages/background/lib/infra/PaLM";
 import Logger from "@pages/background/lib/utils/logger";
 import {
   sendErrorMessageToClient,
@@ -10,7 +10,7 @@ import {
 } from "@src/chrome/message";
 import { QuickChatHistoryStorage } from "@pages/background/lib/storage/quickChatHistoryStorage";
 import { exhaustiveMatchingGuard } from "@src/shared/ts-util/exhaustiveMatchingGuard";
-import { createNewChatGPTSlot } from "@src/shared/slot/createNewChatGPTSlot";
+import { createNewPaLMSlot } from "@src/shared/slot/createNewPaLMSlot";
 import { PROMPT_GENERATE_PROMPT } from "@src/constant/promptGeneratePrompt";
 
 reloadOnUpdate("pages/background");
@@ -41,7 +41,7 @@ chrome.runtime.onConnect.addListener((port) => {
           const slots = await SlotStorage.getAllSlots();
           /** add default slot when initialize */
           if (slots.length === 0) {
-            const defaultSlot = createNewChatGPTSlot({ isSelected: true });
+            const defaultSlot = createNewPaLMSlot({ isSelected: true });
             await SlotStorage.addSlot(defaultSlot);
             slots.push(defaultSlot);
           }
@@ -79,10 +79,10 @@ chrome.runtime.onConnect.addListener((port) => {
           break;
         }
         case "SaveAPIKey":
-          await chatGPT({
+          await PaLM({
             input: "hello",
             apiKey: message.input,
-            slot: { type: "ChatGPT" },
+            slot: { type: "PaLM" },
           }).catch((error) => {
             ApiKeyStorage.setApiKey(null);
             throw error;
@@ -97,7 +97,7 @@ chrome.runtime.onConnect.addListener((port) => {
         case "RequestInitialDragGPTStream": {
           const slot = await SlotStorage.getSelectedSlot();
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             input: message.input,
             slot,
             apiKey,
@@ -120,33 +120,33 @@ chrome.runtime.onConnect.addListener((port) => {
           });
           break;
         }
-        case "RequestOnetimeChatGPT": {
+        case "RequestOnetimePaLM": {
           const selectedSlot = await SlotStorage.getSelectedSlot();
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             input: message.input,
             slot: selectedSlot,
             apiKey,
           });
           sendResponse({
-            type: "RequestOnetimeChatGPT",
+            type: "RequestOnetimePaLM",
             data: response,
           });
           break;
         }
-        case "RequestQuickChatGPTStream": {
+        case "RequestQuickPaLMStream": {
           await QuickChatHistoryStorage.pushChatHistories({
             role: "user",
             content: message.input?.at(-1)?.content ?? "",
           });
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             chats: message.input,
-            slot: { type: "ChatGPT" },
+            slot: { type: "PaLM" },
             apiKey,
             onDelta: (chunk) => {
               sendResponse({
-                type: "RequestQuickChatGPTStream",
+                type: "RequestQuickPaLMStream",
                 data: {
                   result: chunk,
                   chunk,
@@ -159,16 +159,16 @@ chrome.runtime.onConnect.addListener((port) => {
             content: response.result,
           });
           sendResponse({
-            type: "RequestQuickChatGPTStream",
+            type: "RequestQuickPaLMStream",
             data: { result: response.result, isDone: true },
           });
           break;
         }
         case "RequestDragGPTStream": {
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             chats: message.input,
-            slot: { type: "ChatGPT" },
+            slot: { type: "PaLM" },
             apiKey,
             onDelta: (chunk) => {
               sendResponse({
@@ -186,29 +186,29 @@ chrome.runtime.onConnect.addListener((port) => {
           });
           break;
         }
-        case "RequestOngoingChatGPT": {
+        case "RequestOngoingPaLM": {
           const selectedSlot = await SlotStorage.getSelectedSlot();
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             chats: message.input,
             slot: selectedSlot,
             apiKey,
           });
-          sendResponse({ type: "RequestOngoingChatGPT", data: response });
+          sendResponse({ type: "RequestOngoingPaLM", data: response });
           break;
         }
-        case "RequestGenerateChatGPTPrompt": {
+        case "RequestGeneratePaLMPrompt": {
           const apiKey = await ApiKeyStorage.getApiKey();
-          const response = await chatGPT({
+          const response = await PaLM({
             input: message.input,
             slot: {
-              type: "ChatGPT",
+              type: "PaLM",
               system: PROMPT_GENERATE_PROMPT,
             },
             apiKey,
           });
           sendResponse({
-            type: "RequestGenerateChatGPTPrompt",
+            type: "RequestGeneratePaLMPrompt",
             data: response,
           });
           break;

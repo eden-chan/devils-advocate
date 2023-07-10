@@ -1,5 +1,5 @@
 export const COLORS = {
-  CONTENT_BACKGROUND: "#FFF9D8",
+  CONTENT_BACKGROUND: "#fff9d8",
   POPUP_BACKGROUND: "#282c34", // index css
   PRIMARY: "#3F75E5FF",
   WHITE: "#f5f5f5",

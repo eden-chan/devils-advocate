@@ -10,7 +10,7 @@ import {
 } from "@src/chrome/message";
 import SlotListItem from "@pages/popup/components/SlotListItem";
 import { COLORS } from "@src/constant/style";
-import { createNewChatGPTSlot } from "@src/shared/slot/createNewChatGPTSlot";
+import { createNewPaLMSlot } from "@src/shared/slot/createNewPaLMSlot";
 import { t } from "@src/chrome/i18n";
 import PromptGenerator from "@pages/popup/components/PromptGenerator";
 
@@ -80,7 +80,7 @@ export default function SlotListPage({
   });
 
   const addNewSlot = () => {
-    const newSlot = createNewChatGPTSlot();
+    const newSlot = createNewPaLMSlot();
     send({
       type: "ADD_SLOT",
       data: newSlot,

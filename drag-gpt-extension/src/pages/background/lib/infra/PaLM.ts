@@ -1,12 +1,16 @@
-import type { ChatCompletionRequestMessage } from "openai";
+import type {
+  ChatCompletionRequestMessage,
+  CreateChatCompletionRequest,
+} from "openai";
 
-export async function chatGPT({
+export async function PaLM({
   input,
   slot,
   chats,
+  apiKey,
   onDelta,
 }: {
-  slot: ChatGPTSlot;
+  slot: PaLMSlot;
   chats?: ChatCompletionRequestMessage[];
   input?: string;
   apiKey: string;
@@ -67,17 +71,13 @@ export async function chatGPT({
 
     throw error;
   }
+  const jsonBody = await response.json();
+  const result: string = jsonBody.response;
+  onDelta?.(result);
 
-  const result = await response.json();
-  console.log("logging response json", { result });
-
-  console.log("logging response text", {
-    result: result.choices[0].message.content,
-  });
-
-  const chunk = result.choices[0].message.content;
-  onDelta?.(chunk);
-  return { result: chunk };
+  return {
+    result,
+  };
 }
 
 function hasChats(

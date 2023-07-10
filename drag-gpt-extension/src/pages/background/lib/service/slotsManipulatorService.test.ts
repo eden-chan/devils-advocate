@@ -4,7 +4,7 @@ const defaultSlot: Slot = {
   id: "1",
   name: "name",
   isSelected: false,
-  type: "ChatGPT",
+  type: "PaLM",
 };
 
 describe("SlotsManipulator test", () => {

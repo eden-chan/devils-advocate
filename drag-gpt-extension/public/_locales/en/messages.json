@@ -3,7 +3,7 @@
     "message": "Drag GPT - Easy start AI with Drag!"
   },
   "extensionDescription": {
-    "message": "You can easily ask or request the selected content to ChatGPT by dragging and clicking the button."
+    "message": "You can easily ask or request the selected content to PaLM by dragging and clicking the button."
   },
   "dragGPT": {
     "message": "Drag GPT"
@@ -87,7 +87,7 @@
     "message": "ex. Code Review"
   },
   "slotDetail_writePromptTitle": {
-    "message": "Write a prompt for ChatGPT (MAX 2000)"
+    "message": "Write a prompt for PaLM (MAX 2000)"
   },
   "slotDetail_promptInputPlaceholder": {
     "message": "ex. You are a code reviewer."
@@ -102,7 +102,7 @@
     "message": "CANCEL"
   },
   "responseMessageBox_responseTitle": {
-    "message": "Response!!!"
+    "message": "Complementary Opposite News (CON)"
   },
   "responseMessageBox_copyButtonText_copy": {
     "message": "COPY LAST RESPONSE"
@@ -117,7 +117,7 @@
     "message": "STOP"
   },
   "responseMessageBox_messageInputPlacepolder": {
-    "message": "ex. Summarize!"
+    "message": "CONTINUE"
   },
   "errorMessageBox_errorTitle": {
     "message": "Error"

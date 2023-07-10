@@ -3,7 +3,7 @@ import MessageBox, {
 } from "@pages/content/src/ContentScriptApp/components/messageBox/MessageBox";
 import StyledButton from "@pages/popup/components/StyledButton";
 import { FormEventHandler } from "react";
-import { HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { HStack, Input, Text, VStack, Image } from "@chakra-ui/react";
 import DraggableBox from "@pages/content/src/ContentScriptApp/components/DraggableBox";
 import { useMachine } from "@xstate/react";
 import { ChatCompletionRequestMessage } from "openai";
@@ -16,7 +16,7 @@ import { t } from "@src/chrome/i18n";
 import { DragHandleIcon } from "@chakra-ui/icons";
 import streamChatStateMachine from "@src/shared/xState/streamChatStateMachine";
 import { getDragGPTResponseAsStream } from "@src/shared/services/getGPTResponseAsStream";
-
+import ConLogo from "./ConLogo.png";
 type ResponseMessageBoxProps = Omit<
   MessageBoxProps,
   "header" | "width" | "footer" | "content"
@@ -85,20 +85,23 @@ export default function ResponseMessageBox({
   return (
     <MessageBox
       header={
-        <Text
-          as="header"
-          display="flex"
-          alignItems="center"
-          width="100%"
-          height={24}
-          color="black"
-          fontWeight="bold"
-          cursor="move"
-          className={DraggableBox.handlerClassName}
-        >
-          <DragHandleIcon mr={4} boxSize={12} />
-          {t("responseMessageBox_responseTitle")}
-        </Text>
+        <>
+          <Text
+            as="header"
+            display="flex"
+            alignItems="center"
+            width="100%"
+            height={24}
+            color="black"
+            fontWeight="bold"
+            cursor="move"
+            className={DraggableBox.handlerClassName}
+          >
+            <DragHandleIcon mr={4} boxSize={12} />
+            {t("responseMessageBox_responseTitle")}
+          </Text>
+          <Image src={ConLogo} alt="" align="right" />
+        </>
       }
       onClose={() => send("EXIT")}
       width={480}

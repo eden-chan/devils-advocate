@@ -38,8 +38,8 @@ declare module "*.json" {
 }
 
 declare global {
-  type ChatGPTSlot = {
-    type: "ChatGPT";
+  type PaLMSlot = {
+    type: "PaLM";
     system?: string;
     /** config */
     maxTokens?: number; // max 4000
@@ -49,7 +49,7 @@ declare global {
     presencePenalty?: number; // 이미 사용된 단어 억제
   };
 
-  type Slot = { id: string; name: string; isSelected: boolean } & ChatGPTSlot;
+  type Slot = { id: string; name: string; isSelected: boolean } & PaLMSlot;
 
   type Chat = {
     role: "user" | "assistant" | "error";
@@ -76,35 +76,35 @@ declare global {
     input: string;
     data?: "success";
   };
-  type RequestOnetimeChatGPTMessage = {
-    type: "RequestOnetimeChatGPT";
+  type RequestOnetimePaLMMessage = {
+    type: "RequestOnetimePaLM";
     input: string;
     data?: { result: string };
   };
-  type RequestGenerateChatGPTPromptMessage = {
-    type: "RequestGenerateChatGPTPrompt";
+  type RequestGeneratePaLMPromptMessage = {
+    type: "RequestGeneratePaLMPrompt";
     input: string;
     data?: { result: string };
   };
-  type RequestOngoingChatGPTMessage = {
-    type: "RequestOngoingChatGPT";
+  type RequestOngoingPaLMMessage = {
+    type: "RequestOngoingPaLM";
     input: ChatCompletionRequestMessage[];
     data?: { result: string };
   };
   type RequestInitialDragGPTMessage = {
     type: "RequestInitialDragGPTStream";
     input?: string;
-    data?: { result: string; isDone?: boolean };
+    data?: { result: string; chunk?: string; isDone?: boolean };
   };
   type RequestDragGPTMessage = {
     type: "RequestDragGPTStream";
     input?: ChatCompletionRequestMessage[];
-    data?: { result: string; isDone?: boolean };
+    data?: { result: string; chunk?: string; isDone?: boolean };
   };
-  type RequestQuickChatGPTMessage = {
-    type: "RequestQuickChatGPTStream";
+  type RequestQuickPaLMMessage = {
+    type: "RequestQuickPaLMStream";
     input?: ChatCompletionRequestMessage[];
-    data?: { result: string; isDone?: boolean };
+    data?: { result: string; chunk?: string; isDone?: boolean };
   };
   type SaveAPIKeyMessage = {
     type: "SaveAPIKey";
@@ -144,9 +144,9 @@ declare global {
 
   type Message =
     | RequestInitialDragGPTMessage
-    | RequestQuickChatGPTMessage
+    | RequestQuickPaLMMessage
     | RequestDragGPTMessage
-    | RequestOngoingChatGPTMessage
+    | RequestOngoingPaLMMessage
     | ResetQuickChatHistoryMessage
     | GetQuickChatHistoryMessage
     | AddNewSlotMessage
@@ -156,8 +156,8 @@ declare global {
     | ResetAPIKeyMessage
     | SelectSlotMessage
     | DeleteSlotMessage
-    | RequestOnetimeChatGPTMessage
-    | RequestGenerateChatGPTPromptMessage
+    | RequestOnetimePaLMMessage
+    | RequestGeneratePaLMPromptMessage
     | SaveAPIKeyMessage;
 
   type RequestMessage<M = Message> = Omit<M, "data">;

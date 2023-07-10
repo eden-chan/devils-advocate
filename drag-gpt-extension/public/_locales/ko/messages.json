@@ -3,7 +3,7 @@
     "message": "드래그 GPT - 드래그로 쉽게 AI를 시작해보세요!"
   },
   "extensionDescription": {
-    "message": "드래그 후 버튼 클릭만으로 간단하게 선택한 내용을 ChatGPT에게 물어보거나 요청할 수 있어요!"
+    "message": "드래그 후 버튼 클릭만으로 간단하게 선택한 내용을 PaLM에게 물어보거나 요청할 수 있어요!"
   },
   "dragGPT": {
     "message": "드래그 GPT"
@@ -87,7 +87,7 @@
     "message": "ex. 영-한 번역용"
   },
   "slotDetail_writePromptTitle": {
-    "message": "ChatGPT 요청에 사용할 사전 프롬프트를\n작성해주세요.(최대 2000자)"
+    "message": "PaLM 요청에 사용할 사전 프롬프트를\n작성해주세요.(최대 2000자)"
   },
   "slotDetail_promptInputPlaceholder": {
     "message": "ex. 영어 문장 혹은 단어의 한국어 뜻을 알려줘."

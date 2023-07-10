@@ -124,17 +124,17 @@ export default function MessageBox({
         <Stack>
           <HStack justifyContent="space-between">
             {typeof header === "string" ? (
-              <Text color="black" fontWeight="bold">
+              <Text color="white" fontWeight="bold">
                 {header}
               </Text>
             ) : (
               header
             )}
-            <StyledCloseButton color="black" size="sm" onClick={onClose} />
+            <StyledCloseButton color="white" size="sm" onClick={onClose} />
           </HStack>
           <HStack>
             {typeof content === "string" ? (
-              <Text color="black">{content}</Text>
+              <Text color="white">{content}</Text>
             ) : (
               content
             )}
