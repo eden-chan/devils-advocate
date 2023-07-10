@@ -35,7 +35,7 @@ document.addEventListener('mouseup', (e) => {
           <div class="w-7 h-7 left-[1px] top-[1px] absolute bg-white bg-opacity-0 rounded-full border border-black"></div>
           <img class="w-8 h-8 left-0 top-[32px] absolute origin-top-left rotate-[-89.76deg]" src="https://via.placeholder.com/32x32" />
         </div>
-        <div class="w-64 left-[16px] top-[69px] absolute text-black text-xs font-normal">Q: Isn't it more beneficial to prioritize creating a supportive environment for young people with anxiety, rather than emphasizing the need for them to constantly challenge themselves and be brave?</div>
+        <div id="question_id"class="w-64 left-[16px] top-[69px] absolute text-black text-xs font-normal">Q: Isn't it more beneficial to prioritize creating a supportive environment for young people with anxiety, rather than emphasizing the need for them to constantly challenge themselves and be brave?</div>
       `;
 
       document.body.appendChild(box);
